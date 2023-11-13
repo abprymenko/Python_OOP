@@ -1,4 +1,5 @@
 from .allow import Allow
+#if you uncomment this line, the import error will disappear
 #from .restrict import Restrict
 
 
