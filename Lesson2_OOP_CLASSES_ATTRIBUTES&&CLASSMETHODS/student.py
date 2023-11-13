@@ -1,9 +1,9 @@
 class Student:
     def __init__(self, name:str, age:float, group:str, avg_grade:float = None):
         self.Name:str = name
-        self.Age = age
-        self.Group = group
-        self.Avg_Grade = avg_grade
+        self.Age:float = age
+        self.Group:str = group
+        self.Avg_Grade:float = avg_grade
     def __bool__(self):
         return self.Name != None and\
                 self.Age != None and\

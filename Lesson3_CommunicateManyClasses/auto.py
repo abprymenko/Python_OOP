@@ -13,12 +13,9 @@ class Auto:
     def AddDrivers(self, human:Human):
         if(human.Role == HumanRole.DRIVER):
             self.Drivers.append(human)
+
     def __str__(self):
-        drivers:str = ''
-        passengers:str = ''
-        for driver in self.Drivers:
-            drivers+=f'\n{driver.__str__()}'
-        for passenger in self.Passengers:
-            passengers+=f'\n{passenger.__str__()}'
-        return (f'Passengers:\n {passengers}\n'
-                f'Drivers:\n {drivers}')
+        drivers = '\n'.join(driver.__str__() for driver in self.Drivers)
+        passengers = '\n'.join(passenger.__str__() for passenger in self.Passengers)
+        return (f'Passengers:\n{passengers}\n'
+                f'Drivers:\n{drivers}')

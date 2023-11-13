@@ -14,6 +14,7 @@ print(restrict.RestrictedFunction())
 
 #4 An example that can serve as a foundation for a project oriented towards the Domain-Driven Design (DDD) system.
 '''
+#lua
 my_project/
 |-- my_project/
 |   |-- __init__.py
