@@ -17,3 +17,6 @@ class Student:
                 f"Group - {self.Group}\n"
                 f"Avg_Grade - {self.Avg_Grade}")
 
+if __name__ == "__main__":
+    student = Student("Illya", 14.3, "S2813")
+    print(student.__bool__())
