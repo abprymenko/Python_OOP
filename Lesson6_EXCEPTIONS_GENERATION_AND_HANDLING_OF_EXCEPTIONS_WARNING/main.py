@@ -3,7 +3,9 @@
 try:
     block_code
 except type_exception:
-    block
+    block_code
+finally:
+    block_code
 '''
 '''
 try:
@@ -20,19 +22,15 @@ print("Hello world")
 '''
 #2
 '''
-from builterror import BuildError
-from validation import Validator
+from builderror import BuildError
+from parser import Parser
+from validator import Validator
 limit = 10
 amountStr = input("Enter amount: ")
 amount = None
-validator = Validator()
 try:
-    while(True):
-        if(amountStr.isdigit()):
-            amount = int(amountStr)
-            break
-        amountStr = input("Enter amount as integer digit: ")
-    validator.Check(amount, limit)
+    amount = Parser.ParseDigit(amountStr)
+    Validator.Check(amount, limit)
 except BuildError as be:
     print(be)
 except Exception as ex:
@@ -40,10 +38,11 @@ except Exception as ex:
 print('Hello world')
 '''
 #3 Warnings
+'''
 import warnings
 warnings.simplefilter("ignore", SyntaxWarning)
 #warnings.simplefilter("always", ImportWarning)
 warnings.simplefilter("error", ImportWarning)
 warnings.warn("Warning, no code here!", SyntaxWarning)
 warnings.warn("Warning, module not import!", ImportWarning)
-
+'''

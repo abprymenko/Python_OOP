@@ -1,5 +1,5 @@
 from logging import *
-from Lesson7_Iterators_GENERATORS_LOCKING_DECORATORS.decorator import Checker
+from Lesson7_Iterators_GENERATORS_CLOSURES_DECORATORS.decorator import Calculator
 from logger import Logger
 '''
 debug("debug message")
@@ -13,11 +13,11 @@ critical("critical message")
 '''
 logger = Logger(DEBUG, 'loggingFile.log')
 try:
-    checker = Checker()
+    calculator = Calculator()
     digit1 = int(input("Enter digit1: "))
     digit2 = int(input("Enter digit2: "))
     operation = input("Select operation[/*-+]: ")
-    checker.Calculate(f'{digit1}{operation}{digit2}')
+    res = calculator.Calculate(f'{digit1}{operation}{digit2}')
 except Exception as ex:
     logger.Log(ERROR, ex)
 '''
