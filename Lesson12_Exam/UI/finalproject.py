@@ -1,15 +1,15 @@
 from Lesson10_DataBase_SQLite3 import Repository
 from Lesson9_WORK_WITH_SITES import HtmlParser
 class UserInterface:
-    def ShowMenu(self):
+    def ShowMenu(self, links: list):
         for link in links:
             if link[2].lower() == 'nbu':
                 print(f'[{link[0]} to buy currency.]')
             if link[2].lower() == 'weather':
                 print(f'[{link[0]} to see the weather in Kyiv.]: \t')
-    def ValidateEnteredData(self, operation: str):
+    def ValidateEnteredData(self, operation: str, links: list):
         while (not operation.isdigit()):
-            self.ShowMenu()
+            self.ShowMenu(links)
             operation = input()
         return operation
     def GetLink(self, links: list, value: int):
@@ -32,7 +32,8 @@ class UserInterface:
                 rate = parser.Result[3]
             result = amount / rate
             resDB = f"amount - {amount} hrn; price - {rate} {symbol}; result - {result:.2f} {symbol}"
-            repo.Query(f"INSERT INTO RESULT (result) VALUES('{resDB}')")
+            query = f"INSERT INTO RESULT (result) VALUES('{resDB}')"
+            repo.Query(query)
             print(resDB)
         except:
             raise
@@ -69,7 +70,7 @@ if __name__ == '__main__':
     ui = UserInterface()
     links = repo.Execute('SELECT * FROM LINKS')
     print('Select operation.\nEnter:')
-    operation = ui.ValidateEnteredData('')
+    operation = ui.ValidateEnteredData('', links)
     value = int(operation)
     link = ui.GetLink(links, value)
     if value == 1:
