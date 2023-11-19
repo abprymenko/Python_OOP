@@ -16,7 +16,7 @@ class HtmlParser:
             counter = 0
             for tag in tags:
                 strValue = tag.text.strip().replace(',', '.')
-                self.Result[f'{counter}'] = float(strValue)
+                self.Result[counter] = float(strValue)
                 counter += 1
         except:
             raise
@@ -45,5 +45,4 @@ if __name__ == '__main__':
     parser.Result = {}
     parser.Url = 'https://meteo.ua/ua/34/kiev'
     parser.WeatherParse('temperature')
-    current_date = datetime.datetime.now()
     print(parser.Result)
