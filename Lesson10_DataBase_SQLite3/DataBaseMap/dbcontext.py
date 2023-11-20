@@ -14,18 +14,14 @@ class DbContext:
             raise
     def OpenSession(self):
         try:
-            if(not self.IsSessionOpen()):
+            if(not self.__IsSessionOpen()):
                 self.Session = Session(self.Engine)
-        except:
-            raise
-    def IsSessionOpen(self):
-        try:
-            return self.Session.is_active if self.Session else False
         except:
             raise
     def CloseSession(self):
         try:
-            self.Session.close()
+            if (self.__IsSessionOpen()):
+                self.Session.close()
         except:
             raise
     def AddMany(self, instances: list):
@@ -36,3 +32,8 @@ class DbContext:
             raise
     def SelectAll(self, *enteties):
         return self.Session.query(*enteties).all()
+    def __IsSessionOpen(self):
+        try:
+            return self.Session.is_active if self.Session else False
+        except:
+            raise
