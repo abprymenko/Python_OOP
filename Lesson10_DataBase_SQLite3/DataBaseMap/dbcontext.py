@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Engine
+from sqlalchemy import create_engine, Engine, ColumnElement
 from sqlalchemy.orm import Session
 from student import Base
 
@@ -24,14 +24,26 @@ class DbContext:
                 self.Session.close()
         except:
             raise
-    def AddMany(self, instances: list):
+    def AddAll(self, instances: list):
         try:
             self.Session.add_all(instances)
             self.Session.commit()
         except:
             raise
-    def SelectAll(self, *enteties):
-        return self.Session.query(*enteties).all()
+    def AddInstance(self, instance: object):
+        try:
+            self.Session.add(instance)
+            self.Session.commit()
+        except:
+            raise
+    def QueryAll(self, filter: ColumnElement[bool] = None, *enteties):
+        try:
+            query = self.Session.query(*enteties)
+            if filter is not  None:
+                query = query.filter(filter)
+            return query.all()
+        except:
+            raise
     def __IsSessionOpen(self):
         try:
             return self.Session.is_active if self.Session else False

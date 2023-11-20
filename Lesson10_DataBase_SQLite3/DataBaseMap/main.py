@@ -1,3 +1,4 @@
+from sqlalchemy import ColumnElement
 from dbcontext import DbContext
 from student import Student
 
@@ -18,14 +19,14 @@ def SeedDB(context: DbContext):
         context.CreateTables()
         context.OpenSession()
         students = GetStudents()
-        context.AddMany(students)
+        context.AddAll(students)
     except:
         raise
     finally:
         context.CloseSession()
-def ShowAllStudents(context: DbContext):
+def ShowAllStudents(context: DbContext, filter: ColumnElement[bool] = None):
     try:
-        studentsDb = context.SelectAll(Student)
+        studentsDb = context.QueryAll(filter, Student)
         for student in studentsDb:
             print(f"ID: {student.id}, Name: {student.name}, Age: {student.age}, Avg Grade: {student.avg_grade}")
     except:
@@ -36,6 +37,9 @@ if __name__ == '__main__':
         context = CreateContext()
         #SeedDB(context)
         context.OpenSession()
+        filter = Student.age > 14
+        ShowAllStudents(context, filter)
+        context.AddInstance(Student( "Magomed-Emin", 14, 12))
         ShowAllStudents(context)
     except Exception as ex:
         print(ex)
