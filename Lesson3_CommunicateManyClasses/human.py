@@ -5,5 +5,5 @@ class Human:
         self.Role:HumanRole = role
 
     def __str__(self):
-        return (f'Name - {self.Name}\n'
-                f'Role - {self.Role.name}')
+        return (f'Name - {self.Name}\t'
+                f'Role - {self.Role.name}\n')

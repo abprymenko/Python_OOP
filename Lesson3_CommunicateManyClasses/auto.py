@@ -7,15 +7,21 @@ class Auto:
         self.Type:AutoType = type
         self.Passengers:list = list()
         self.Drivers:list = list()
-    def AddPassengers(self, human:Human):
-        if(human.Role == HumanRole.PASSENGER):
+    def add_passengers(self, human:Human):
+        if isinstance(self.Drivers, list) and human.Role == HumanRole.PASSENGER:
             self.Passengers.append(human)
-    def AddDrivers(self, human:Human):
-        if(human.Role == HumanRole.DRIVER):
+    def add_drivers(self, human:Human):
+        if isinstance(self.Drivers, list) and human.Role == HumanRole.DRIVER:
             self.Drivers.append(human)
 
     def __str__(self):
-        drivers = '\n'.join(driver.__str__() for driver in self.Drivers)
-        passengers = '\n'.join(passenger.__str__() for passenger in self.Passengers)
-        return (f'Passengers:\n{passengers}\n'
-                f'Drivers:\n{drivers}')
+        #drivers = '\n'.join(str(driver) for driver in self.Drivers)
+        #passengers = '\n'.join(str(passenger) for passenger in self.Passengers)
+        drivers: str = ''
+        passengers: str = ''
+        for driver in self.Drivers:
+            drivers += str(driver)
+        for passenger in self.Passengers:
+            passengers += str(passenger)
+        return (f'Drivers:\n{drivers}\n'
+                f'Passengers:\n{passengers}')

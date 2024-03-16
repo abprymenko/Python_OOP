@@ -1,4 +1,4 @@
 from enum import Enum
 class AutoType(Enum):
-    TRUCK = 1
-    CAR = 2
+    TRUCK = 0 # or name can be LORRY
+    CAR = 1
