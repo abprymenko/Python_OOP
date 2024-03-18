@@ -8,10 +8,14 @@ class Auto:
         self.Passengers:list = list()
         self.Drivers:list = list()
     def add_passengers(self, human:Human):
-        if isinstance(self.Drivers, list) and human.Role == HumanRole.PASSENGER:
+        if isinstance(self.Drivers, list) 
+            and isinstance(human, Human)
+            and human.Role == HumanRole.PASSENGER:
             self.Passengers.append(human)
     def add_drivers(self, human:Human):
-        if isinstance(self.Drivers, list) and human.Role == HumanRole.DRIVER:
+        if isinstance(self.Drivers, list) 
+            and isinstance(human, Human)
+            and human.Role == HumanRole.DRIVER:
             self.Drivers.append(human)
 
     def __str__(self):
