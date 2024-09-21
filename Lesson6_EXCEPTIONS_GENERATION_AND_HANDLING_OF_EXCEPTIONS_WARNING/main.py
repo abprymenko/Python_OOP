@@ -22,20 +22,25 @@ print("Hello world")
 '''
 #2
 '''
-from builderror import BuildError
 from parser import Parser
-from validator import Validator
+from validator import *
 limit = 10
-amountStr = input("Enter amount: ")
 amount = None
-try:
-    amount = Parser.ParseDigit(amountStr)
-    Validator.Check(amount, limit)
-except BuildError as be:
-    print(be)
-except Exception as ex:
-    print(ex)
-print('Hello world')
+while(True):
+    try:
+        amountStr = input("Enter amount: ")
+        amount = Parser.ParseDigit(amountStr)
+        Validator.Check(amount, limit)
+        print('Thanks for the purchase.')
+    except BuildError as be:
+        print(be)
+    except Exception as ex:
+        print(ex)
+    finally:
+        yes = input('Would you like try again?[Y/N]: ')
+        if (yes.lower() != 'y'):
+            break
+print('End.')
 '''
 #3 Warnings
 '''
