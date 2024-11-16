@@ -22,7 +22,7 @@ print("Hello world")
 '''
 #2
 '''
-from parser import Validator
+from parser import *
 from validator import *
 limit = 10
 amount = None
