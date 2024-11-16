@@ -1,4 +1,5 @@
-from visitor import DigitVisitor
+from visitor import Parser
+
 class Parser:
     @staticmethod
     def ParseDigit(amount: str):
