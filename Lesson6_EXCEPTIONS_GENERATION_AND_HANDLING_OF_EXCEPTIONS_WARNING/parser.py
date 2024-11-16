@@ -2,7 +2,7 @@ from visitor import Parser
 
 class Validator:
     @staticmethod
-    def CheckDigit(amount: str):
+    def ValidateDigit(amount: str):
         while True:
             try:
                 value = Parser.IntTryParse(amount)
