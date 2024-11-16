@@ -1,15 +1,17 @@
 from visitor import Parser
 
-class Parser:
+class Validator:
     @staticmethod
-    def ParseDigit(amount: str):
+    def CheckDigit(amount: str):
         while True:
             try:
-                return DigitVisitor.IntTryParse(amount)
-            except ValueError:
-                try:
-                    return DigitVisitor.FloatTryParse(amount)
-                except ValueError:
-                    amount = input("Enter amount as digit: ")
+                value = Parser.IntTryParse(amount)
+                if isinstance(value, None):
+                    value = Parser.FloatTryParse(amount)
             except Exception as ex:
                 raise ex
+            finally:
+                if isinstance(value, None):
+                    amount = input("Enter amount as integer: ")
+                else:
+                    return value
