@@ -22,15 +22,15 @@ print("Hello world")
 '''
 #2
 '''
-from parser import Parser
+from parser import ValdateDigit
 from validator import *
 limit = 10
 amount = None
 while(True):
     try:
         amountStr = input("Enter amount: ")
-        amount = Parser.ParseDigit(amountStr)
-        Validator.Check(amount, limit)
+        amount = Validator.ValdateDigit(amountStr)
+        Checker.Check(amount, limit)
         print('Thanks for the purchase.')
     except BuildError as be:
         print(be)
