@@ -1,5 +1,5 @@
 from builderror import BuildError
-class Validator:
+class Checker:
     @staticmethod
     def Check(amount:int, limit:int):
         if(not amount > 0):
