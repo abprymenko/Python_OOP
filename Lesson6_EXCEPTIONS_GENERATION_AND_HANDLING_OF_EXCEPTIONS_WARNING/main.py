@@ -22,7 +22,7 @@ print("Hello world")
 '''
 #2
 '''
-from checker import *
+from validator import *
 from parser import *
 limit = 10
 amount = None
@@ -30,7 +30,7 @@ while True:
     try:
         amountStr = input("Enter amount: ")
         amount = Parser.NumericTryParse(amountStr)
-        Checker.Check(amount, limit)
+        Validator.Check(amount, limit)
         print('Thanks for the purchase.')
     except Exception as ex:
         print(ex)
