@@ -1,11 +1,11 @@
 #1
 '''
 try:
-    block_code
+    block_try_code
 except type_exception:
-    block_code
+    block_handle_code
 finally:
-    block_code
+    block_finally_code
 '''
 '''
 try:
