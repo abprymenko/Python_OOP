@@ -1,17 +1,15 @@
-from visitor import Parser
+from types import NoneType
 
-class Validator:
+class Parser:
     @staticmethod
-    def ValidateDigit(amount: str):
-        while True:
-            try:
-                value = Parser.IntTryParse(amount)
-                if isinstance(value, None):
-                    value = Parser.FloatTryParse(amount)
-            except Exception as ex:
-                raise ex
-            finally:
-                if isinstance(value, None):
-                    amount = input("Enter amount as integer: ")
-                else:
-                    return value
+    def NumericTryParse(amount: str):
+        try:
+            value = amount.strip()
+            if (value.isdigit()
+                    or (ord(value[0]) == ord('-') and value[1:].isdigit())):
+                return int(value)
+            elif '.' in value:
+                return float(value)
+            return None
+        except ValueError as ve:
+            return None

@@ -22,25 +22,23 @@ print("Hello world")
 '''
 #2
 '''
+from checker import *
 from parser import *
-from validator import *
 limit = 10
 amount = None
-while(True):
+while True:
     try:
         amountStr = input("Enter amount: ")
-        amount = Validator.ValidateDigit(amountStr)
+        amount = Parser.NumericTryParse(amountStr)
         Checker.Check(amount, limit)
         print('Thanks for the purchase.')
-    except BuildError as be:
-        print(be)
     except Exception as ex:
         print(ex)
     finally:
         yes = input('Would you like try again?[Y/N]: ')
-        if (yes.lower() != 'y'):
+        if  yes.lower() != 'y':
             break
-print('End.')
+print("Welcome again.")
 '''
 #3 Warnings
 '''
