@@ -35,7 +35,7 @@ while True:
     except Exception as ex:
         print(ex)
     finally:
-        yes = input('Would you like try again?[Y/N]: ')
+        yes = input('Would you like to try again?[Y/N]: ')
         if  yes.lower() != 'y':
             break
 print("Welcome again.")
