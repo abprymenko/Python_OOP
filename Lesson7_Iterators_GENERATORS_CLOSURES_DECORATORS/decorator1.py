@@ -20,12 +20,11 @@ In OOP, they are often used for logging, access control, caching, etc.
 '''
 from datetime import datetime
 
-import datetime
 def Log_Method_Call(method):
     def Wrapper(self, *args, **kwargs):
-        print(f"[{datetime.datetime.now()}] Call the method:  '{method.__name__}' with arguments {args} і {kwargs}")
+        print(f"[{datetime.now()}] Call the method:  '{method.__name__}' with arguments {args} і {kwargs}")
         result = method(self, *args, **kwargs)
-        print(f"[{datetime.datetime.now()}] The method '{method.__name__}' returns {result}")
+        print(f"[{datetime.now()}] The method '{method.__name__}' returns {result}")
         return result
     return Wrapper
 
