@@ -1,19 +1,21 @@
 from logging import *
 from Lesson8_Logging_Tests.calcmanager import CalcManager
 from logger import Logger
+from Lesson7_Iterators_GENERATORS_CLOSURES_DECORATORS.decorator import Calculator
 import inspect
-
 '''
-debug("debug message")
-info("info message")
-warning("warning message")
-error("error message")
-critical("critical message")
+loggerName = 'Lesson8_main'
+logger = Logger(loggerName, 'loggingFile.log')
 '''
-
+'''
+logger.Log("debug message", DEBUG)
+logger.Log("info message", INFO)
+logger.Log("warning message", WARN)
+logger.Log("error message", ERROR)
+logger.Log("critical message", FATAL)
+'''
 #1 Logger
 '''
-logger = Logger(DEBUG, 'loggingFile.log')
 try:
     calculator = Calculator()
     digit1 = int(input("Enter digit1: "))
@@ -25,8 +27,7 @@ except Exception as ex:
 '''
 
 #2 Tests
-loggerName = __name__
-logger = Logger(loggerName, level=ERROR)
+'''
 def Test_Add_R_4():
     try:
         #assert CalcManager.Add(2, 2) == 5, 'wrong answer 5'
@@ -41,8 +42,9 @@ try:
 except Exception as ex:
     #print(ex)
     try:
-        logger.Log(ex)
+        logger.Log(ex, ERROR)
     except Exception as ex:
         print(ex)
+'''
 #3 doctest see in Lesson8_Logging_Testing.calcmanager.py file
 #4 Unit tests in Lesson8_Logging_Testing.unittestsexample.py file

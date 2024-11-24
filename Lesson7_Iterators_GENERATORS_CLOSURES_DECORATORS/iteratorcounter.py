@@ -1,14 +1,11 @@
 class Counter:
-    def __init__(self, i:int, maxNumber:int):
-        self.I:int = i
-        self.MaxNumber:int = maxNumber
-    def __str__(self):
-        return f'Call __str__(self) = {self.I}'
+    def __init__(self, min:int, max:int):
+        self.Min:int = min
+        self.Max:int = max
     def __iter__(self):
-        self.I = 0
         return  self
     def __next__(self):
-        self.I += 1
-        if(self.I > self.MaxNumber):
+        self.Min += 1
+        if(self.Min > self.Max):
             raise StopIteration
-        return self
+        return self.Min

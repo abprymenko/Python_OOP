@@ -1,16 +1,18 @@
 from logging import *
 
 class Logger:
-    def __init__(self, loggerName: str, level: int=DEBUG, fileName: str= 'loggingFile.log'):
-        self.Level: int = level
-        self.__ConfigureLogger(fileName, loggerName)
-    def __ConfigureLogger(self, fileName: str, loggerName: str):
-        self.__Logger = getLogger(loggerName)
-        self.__Logger.setLevel(self.Level)
-        formatter = Formatter("%(asctime)s : %(levelname)s - %(name)s - %(message)s")
-        file_handler = FileHandler(fileName, mode='a')
+    def __init__(self, loggerName: str, fileName: str):
+        self.LoggerName = loggerName
+        self.FileName = fileName
+        self.__ConfigureLogger()
+
+    def __ConfigureLogger(self):
+        self.__Logger = getLogger(self.LoggerName)
+        formatter = Formatter('%(asctime)s : %(levelname)s - %(name)s - %(message)s')
+        file_handler = FileHandler(filename=self.FileName, mode='a')
         file_handler.setFormatter(formatter)
         self.__Logger.addHandler(file_handler)
+
     def __Log(self, message: str):
         try:
             if (message is None\
@@ -31,6 +33,7 @@ class Logger:
         except Exception as ex:
             self.__Logger.critical(ex)
             raise ex
+
     def __LogDecorator(self, *exc_types):
         def Decorator(function):
             def Wrapper(*args, **kwargs):
@@ -42,8 +45,10 @@ class Logger:
         return Decorator
 
     @__LogDecorator(Exception)
-    def Log(self, message: str):
+    def Log(self, message: str, level: int):
         try:
+            self.Level = level
+            self.__Logger.setLevel(self.Level)
             self.__Log(message)
         except:
             raise

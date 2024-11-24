@@ -3,56 +3,85 @@ from generator import Generator
 from callobject import Helper
 from decorator import Calculator
 
+#what is iterable objects?
+#students = [["Student_Name0", 15, True], ["Student_Name1", 17, False], ["Student_Name2", 16, False]]
+#1 Iterate by for loop
 '''
-students = [["Nikita", 15, True], 2, 3, 4, 5, "Andrii"]
-iter_students = iter(students)
+for loops automatically create an iterator behind the scenes when looping over a collection.
+These types can be looped over with a for loop:
+	1.	Sequences: str, list, tuple, range;
+	2.	Collections: set, frozenset, dict (iterates over keys by default);
+	3.	Custom Iterators: any object with an __iter__() or __getitem__() method;
+	4.	Generators and Generator Expressions.
 '''
-#1 what is iterable objects?
 '''
-iter_students1 = iter(students)
-for student in iter_students:
+for student in students:
     print(student)
-
-for student in iter_students1:
-    print(student)
 '''
-#2 __next__()
+#2 Iterate by while loop
+#2.1 without the iter() method
 '''
-try:
-    print(iter_students.__next__())
-    print(iter_students.__next__())
-    print(iter_students.__next__())
-    print(iter_students.__next__())
-    print(iter_students.__next__())
-    print(iter_students.__next__())
-    print(iter_students.__next__())
-    #while(True):
-        #print(next(iter_students))
-        ##print(iter_students.__next__())
-except StopIteration:
-    pass
+i = 0
+while i < len(students):
+    print(students[i])
+    i += 1
+'''
+#2.2 with only the next() method
+'''
+while True:
+    print(next(students))#TypeError: 'list' object is not an iterator
 print("Hello Iterators")
 '''
-#3 Iterator -> Counter
+#2.3 with the next() and the iter() methods
 '''
-counter = Counter(25, 40)
+iter_students = iter(students)
+while True:
+    try:
+        print(next(iter_students))
+    except StopIteration:
+        break
+print("Hello Iterators")
+'''
+
+#3 Iterator -> Counter
+#counter = Counter(25, 40)
+#3.1 for
+'''
+for i in counter:
+    print(i)
+'''
+#3.2 while
+'''
 try:
     while(True):
         print(next(counter))
 except StopIteration:
     pass
 '''
+
 #4 Generator :: yield
+#generator = Generator(students)
+#4.1 for
 '''
-students = [["Nikita", 15, True], "Andrii", "Dima", "Roma", "Igor"]
-generator = Generator(students)
-for i in generator.GetStyudents():
+for i in generator:
     print(i)
 '''
+#4.2 while
+'''
+i=0
+while True:
+    try:
+        print(generator[i])
+        i += 1
+    except IndexError:
+        break
+'''
+
 #5 Closures
 '''
 def HelperFunc(work):
-    #Data Encapsulation: Closures provide a way to encapsulate data within a function, limiting its visibility and accessibility from outside.
+    #Data Encapsulation: Closures provide a way to encapsulate data within a function, 
+    #limiting its visibility and accessibility from outside.
     work_in_memory = work
     def HelperInnerFunction(work):
         return f"I will help you with your {work_in_memory}. Afterwards I will help you with {work}"
